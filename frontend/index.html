@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpresoFast - Control de Envíos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">ExpresoFast Control Panel</div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Reportes</a></li>
+                <li><a href="#">Configuración</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <h3>Filtros de Estado</h3>
+            <ul class="filtros">
+                <li><button onclick="filtrar('TODOS')">Todos</button></li>
+                <li><button onclick="filtrar('PENDIENTE')">Pendientes</button></li>
+                <li><button onclick="filtrar('EN_TRANSITO')">En Tránsito</button></li>
+                <li><button onclick="filtrar('ENTREGADO')">Entregados</button></li>
+            </ul>
+
+            <h3>Registrar Nuevo Envío</h3>
+            <form id="form-envio">
+                <label for="codigoRastreo">Código Rastreo:</label>
+                <input type="text" id="codigoRastreo" required>
+                
+                <label for="direccionDestino">Dirección Destino:</label>
+                <input type="text" id="direccionDestino" required>
+                
+                <label for="pesoKg">Peso (Kg):</label>
+                <input type="number" id="pesoKg" step="0.01" required>
+                
+                <label for="costo">Costo:</label>
+                <input type="number" id="costo" step="0.01" required>
+                
+                <label for="vehiculoId">ID Vehículo:</label>
+                <input type="number" id="vehiculoId" required>
+                
+                <label for="conductorId">ID Conductor:</label>
+                <input type="number" id="conductorId" required>
+                
+                <button type="submit">Registrar</button>
+            </form>
+        </aside>
+
+        <section class="tablero">
+            <h2>Tablero de Control</h2>
+            <div id="envios-grid" class="grid">
+                <!-- Tarjetas generadas dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
