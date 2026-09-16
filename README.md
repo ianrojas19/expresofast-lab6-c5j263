@@ -99,11 +99,11 @@ sqlcmd -S localhost -E -i database/03_data_seeds.sql
 
 ### Frontend (HTML/JS)
 
-Servir los archivos con un servidor HTTP local (python instalado requerido previamente):
+Servir los archivos con un servidor HTTP local:
 ```bash
 cd frontend
 python -m http.server 5500
-# Alternativas: Usar extension de Visual Studio Code "Live Server"
+# O con VS Code Live Server en el puerto 5500
 ```
 
 Acceder en: `http://localhost:5500/login.html`
@@ -125,10 +125,10 @@ Acceder en: `http://localhost:5500/login.html`
 
 ## Funcionalidades Implementadas
 
-- **JWT + RBAC:** Autenticación stateless con tokens firmados HS384, control de acceso por rol
-- **DTOs + Validación OWASP:** `EnvioRequestDTO` con `@NotBlank`, `@Pattern`, `@Positive`  
-- **Bitácora automática:** Registro en `bitacora_envio` en cada cambio de estado con usuario, fecha y observaciones
-- **Reglas de negocio:** Bloqueo de transiciones inválidas (ENTREGADO/CANCELADO → PENDIENTE/EN_TRANSITO)
-- **GlobalExceptionHandler:** Respuestas JSON estandarizadas para 400, 401, 403, 404 y 500
-- **Frontend protegido:** Login, localStorage JWT, fetchWithAuth(), renderizado condicional por rol
-- **Modal de bitácora:** Con filtro por rango de fechas
+- ✅ **JWT + RBAC:** Autenticación stateless con tokens firmados HS384, control de acceso por rol
+- ✅ **DTOs + Validación OWASP:** `EnvioRequestDTO` con `@NotBlank`, `@Pattern`, `@Positive`  
+- ✅ **Bitácora automática:** Registro en `bitacora_envio` en cada cambio de estado con usuario, fecha y observaciones
+- ✅ **Reglas de negocio:** Bloqueo de transiciones inválidas (ENTREGADO/CANCELADO → PENDIENTE/EN_TRANSITO)
+- ✅ **GlobalExceptionHandler:** Respuestas JSON estandarizadas para 400, 401, 403, 404 y 500
+- ✅ **Frontend protegido:** Login, localStorage JWT, fetchWithAuth(), renderizado condicional por rol
+- ✅ **Modal de bitácora:** Con filtro por rango de fechas
