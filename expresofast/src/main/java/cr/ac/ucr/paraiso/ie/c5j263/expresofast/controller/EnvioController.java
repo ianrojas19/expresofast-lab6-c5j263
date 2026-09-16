@@ -1,12 +1,15 @@
 package cr.ac.ucr.paraiso.ie.c5j263.expresofast.controller;
 
 import cr.ac.ucr.paraiso.ie.c5j263.expresofast.business.EnvioService;
-import cr.ac.ucr.paraiso.ie.c5j263.expresofast.domain.Envio;
+import cr.ac.ucr.paraiso.ie.c5j263.expresofast.domain.dto.CambioEstadoDTO;
+import cr.ac.ucr.paraiso.ie.c5j263.expresofast.domain.dto.EnvioRequestDTO;
+import cr.ac.ucr.paraiso.ie.c5j263.expresofast.domain.dto.EnvioResponseDTO;
+import cr.ac.ucr.paraiso.ie.c5j263.expresofast.domain.dto.BitacoraResponseDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/envios")
@@ -20,17 +23,22 @@ public class EnvioController {
     }
 
     @GetMapping("/optimizados")
-    public ResponseEntity<List<Envio>> getEnviosOptimizados() {
+    public ResponseEntity<List<EnvioResponseDTO>> getEnviosOptimizados() {
         return ResponseEntity.ok(envioService.obtenerEnviosOptimizados());
     }
 
     @PostMapping
-    public ResponseEntity<Envio> registrarEnvio(@RequestBody Envio envio) {
-        return ResponseEntity.ok(envioService.registrarEnvio(envio));
+    public ResponseEntity<EnvioResponseDTO> registrarEnvio(@Valid @RequestBody EnvioRequestDTO envioRequestDTO) {
+        return ResponseEntity.ok(envioService.registrarEnvio(envioRequestDTO));
     }
 
     @PatchMapping("/{id}/estado")
-    public ResponseEntity<Envio> actualizarEstado(@PathVariable Integer id, @RequestBody Map<String, String> body) {
-        return ResponseEntity.ok(envioService.actualizarEstado(id, body));
+    public ResponseEntity<EnvioResponseDTO> actualizarEstado(@PathVariable Integer id, @RequestBody CambioEstadoDTO cambioEstadoDTO) {
+        return ResponseEntity.ok(envioService.actualizarEstado(id, cambioEstadoDTO));
+    }
+
+    @GetMapping("/{id}/bitacora")
+    public ResponseEntity<List<BitacoraResponseDTO>> obtenerBitacora(@PathVariable Integer id) {
+        return ResponseEntity.ok(envioService.obtenerBitacora(id));
     }
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table
+@Table(name = "envio")
 public class Envio extends AuditableEntity {
 
     @Id
